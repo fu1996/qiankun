@@ -1,10 +1,27 @@
-import { loadMicroApp } from '../../es';
+import { loadMicroApp, initGlobalState } from '../../es';
 
 let app;
 
+const { onGlobalStateChange, setGlobalState } = initGlobalState({
+  user: 'qiankun',
+});
+
+onGlobalStateChange((value, prev) => console.log('[onGlobalStateChange - master]:', value, prev));
+
+setGlobalState({
+  ignore: 'master',
+  user: {
+    name: 'master',
+  },
+});
+
 function mount() {
   app = loadMicroApp(
-    { name: 'react15', entry: '//localhost:7102', container: '#react15' },
+    { name: 'react15', entry: '//localhost:7100', container: '#react15', props: {
+      onFormChange: (value) => {
+        console.log('[onFormChange - master]', value);
+      }
+    } },
     { sandbox: { experimentalStyleIsolation: true } },
   );
 }

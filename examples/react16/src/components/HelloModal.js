@@ -6,7 +6,7 @@ export default function() {
   return (
     <>
       <Button onClick={() => setVisible(true)}>CLICK ME</Button>
-      <Modal visible={visible} onOk={() => setVisible(false)} onCancel={() => setVisible(false)} title="qiankun">
+      <Modal visible={visible} getContainer={() => document.querySelector('#root-16')} onOk={() => setVisible(false)} onCancel={() => setVisible(false)} title="qiankun">
         Probably the most complete micro-frontends solution you ever met
       </Modal>
     </>

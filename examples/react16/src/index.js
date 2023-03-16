@@ -4,9 +4,12 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-function render(props) {
+function render(props = {}) {
   const { container } = props;
-  ReactDOM.render(<App />, container ? container.querySelector('#root') : document.querySelector('#root'));
+  const ele = document.createElement('div');
+  ele.id = 'root';
+  document.body.appendChild(ele)
+  ReactDOM.render(<App />, container ? container.querySelector('#root-16') : ele);
 }
 
 function storeTest(props) {
